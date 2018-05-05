@@ -166,7 +166,7 @@ public:
 
 
 // -- get at the data
-class CStipendAddress_B : public CStipendAddress
+class CPushCurrencyAddress_B : public CPushCurrencyAddress
 {
 public:
     uint8_t getVersion()

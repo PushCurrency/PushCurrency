@@ -83,7 +83,7 @@ map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Stipend Signed Message:\n";
+const string strMessageMagic = "PushCurrency Signed Message:\n";
 
 std::set<uint256> setValidatedTx;
 
@@ -1362,25 +1362,25 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
     int64_t nSubsidy = 0 * COIN;
 
     if (nHeight == 1) {
-        nSubsidy = 475000 * COIN; // premine
+        nSubsidy = 25000 * COIN; // premine
     }
     else if (nHeight > 1 && nHeight <= 100) {
         nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 100 && nHeight <= 200) {
-        nSubsidy = 5 * COIN; // instamine prevention
+        nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 200 && nHeight <= 300) {
-        nSubsidy = 10 * COIN; // instamine prevention
+        nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 300 && nHeight <= 400) {
-        nSubsidy = 15 * COIN; // instamine prevention
+        nSubsidy = 1 * COIN; // instamine prevention
     }
-    else if (nHeight > 400 && nHeight <= 1499) {
-        nSubsidy = 25 * COIN; // initial block reward
+    else if (nHeight > 400 && nHeight <= 2999) {
+        nSubsidy = 1 * COIN; // initial block reward
     }
-    else if (nHeight > 1499 && nHeight <= 210000) {
-        nSubsidy = 15 * COIN; // initial block reward
+    else if (nHeight > 2999 && nHeight <= 1890000) {
+        nSubsidy = 0 * COIN; // initial block reward
     }
 
     // add fees.
@@ -1392,24 +1392,24 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
 {
     int64_t nSubsidy = 0;
 
-    if (pindexBest->nHeight+1 > 1500 && pindexBest->nHeight+1 <= 210000)  {
-        nSubsidy = 35 * COIN;
+    if (pindexBest->nHeight+1 > 3000 && pindexBest->nHeight+1 <= 210000)  {
+        nSubsidy = 20 * COIN;
     }
     else if (pindexBest->nHeight+1 > 210000 && pindexBest->nHeight+1 <= 420001)  {
         nSubsidy = 20 * COIN;
     }
     else if (pindexBest->nHeight+1 > 420001 && pindexBest->nHeight+1 <= 630001) {
-        nSubsidy = 10 * COIN;
+        nSubsidy = 20 * COIN;
     }
     else if (pindexBest->nHeight+1 > 630001 && pindexBest->nHeight+1 <= 840001) {
-        nSubsidy = 5 * COIN;
+        nSubsidy = 20 * COIN;
     }
     else if (pindexBest->nHeight+1 > 840001 && pindexBest->nHeight+1 <= 1890000) {
 	// end game - further discussion needed
-        nSubsidy = 3 * COIN;
+        nSubsidy = 20 * COIN;
     } else if (pindexBest->nHeight+1 > 1890000) {
 	// end game - further discussion needed
-        nSubsidy = 3 * COIN;
+        nSubsidy = 20 * COIN;
         nSubsidy >>= ((pindexBest->nHeight + 210000) / 1050000);
     }
 
@@ -2581,7 +2581,7 @@ bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig) c
 
                     CTxDestination address1;
                     ExtractDestination(payee, address1);
-                    CStipendAddress address2(address1);
+                    CPushCurrencyAddress address2(address1);
 
                     if(!foundPaymentAndPayee) {
                         if(fDebug) { LogPrintf("CheckBlock() : Couldn't find masternode payment(%d|%d) or payee(%d|%s) nHeight %d. \n", foundPaymentAmount, masternodePaymentAmount, foundPayee, address2.ToString().c_str(), pindexBest->nHeight+1); }
@@ -3292,7 +3292,7 @@ struct CImportingNow
 
 void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 {
-    RenameThread("stipend-loadblk");
+    RenameThread("PushCurrency-loadblk");
 
     CImportingNow imp;
 
@@ -4570,9 +4570,9 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 
     if (nHeight < 1500) {
 	ret = 0;
-    } else if (nHeight >= 1500 && nHeight <= 210000) {
-        ret = blockValue * 25 / 35; // MN Reward 71%
-    } else if (nHeight > 210000) {
+    } else if (nHeight >= 3000 && nHeight <= 210000) {
+        ret = blockValue * 5 / 15; // MN Reward 75%
+    } else if (nHeight > 1890000) {
 	ret = blockValue / 2 ; // MN Reward 50%
     }
     return ret;

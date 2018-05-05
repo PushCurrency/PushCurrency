@@ -9,7 +9,7 @@
 #include "clientversion.h"
 
 //
-// Bootup the masternode, look for a 5000 SPD input and register on the network
+// Bootup the masternode, look for a 1000 PUSH input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
@@ -46,14 +46,14 @@ void CActiveMasternode::ManageStatus()
         LogPrintf("CActiveMasternode::ManageStatus() - Checking inbound connection to '%s'\n", service.ToString().c_str());
 
         if(Params().NetworkID() == CChainParams::MAIN) {
-            if(service.GetPort() != 46978) {
-                notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - only 46978 is supported on mainnet.";
+            if(service.GetPort() != 50003) {
+                notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - only 50003 is supported on mainnet.";
                 status = MASTERNODE_NOT_CAPABLE;
                 LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason.c_str());
                 return;
             }
-        } else if(service.GetPort() == 46978) {
-            notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - 46978 is only supported on mainnet.";
+        } else if(service.GetPort() == 50003) {
+            notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - 50003 is only supported on mainnet.";
         }
 
         if(!ConnectNode((CAddress)service, service.ToString().c_str())){
@@ -120,7 +120,7 @@ void CActiveMasternode::ManageStatus()
             	return;
             }
 
-            /* donations are not supported in stipend.conf */
+            /* donations are not supported in PushCurrency.conf */
             CScript donationAddress = CScript();
             int donationPercentage = 0;
 
@@ -265,7 +265,7 @@ bool CActiveMasternode::Register(std::string strService, std::string strKeyMaste
         LogPrintf("CActiveMasternode::Register() - Error: %s\n", errorMessage.c_str());
         return false;
     }
-    CStipendAddress address;
+    CPushCurrencyAddress address;
     if (strDonationAddress != "")
     {
         if(!address.SetString(strDonationAddress))
@@ -428,7 +428,7 @@ bool CActiveMasternode::GetVinFromOutput(COutput out, CTxIn& vin, CPubKey& pubke
 
 	CTxDestination address1;
     ExtractDestination(pubScript, address1);
-    CStipendAddress address2(address1);
+    CPushCurrencyAddress address2(address1);
 
     CKeyID keyID;
     if (!address2.GetKeyID(keyID)) {
@@ -467,7 +467,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 // get all possible outputs for running masternode for a specific pubkey
 vector<COutput> CActiveMasternode::SelectCoinsMasternodeForPubKey(std::string collateralAddress)
 {
-    CStipendAddress address(collateralAddress);
+    CPushCurrencyAddress address(collateralAddress);
     CScript scriptPubKey;
     scriptPubKey.SetDestination(address.Get());
     vector<COutput> vCoins;

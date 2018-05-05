@@ -92,23 +92,23 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded Stipend addresses.
+/** base58-encoded PushCurrency addresses.
  * Public-key-hash-addresses have version 0 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CStipendAddress : public CBase58Data {
+class CPushCurrencyAddress : public CBase58Data {
 public:
     bool Set(const CKeyID &id);
     bool Set(const CScriptID &id);
     bool Set(const CTxDestination &dest);
     bool IsValid() const;
 
-    CStipendAddress() {}
-    CStipendAddress(const CTxDestination &dest) { Set(dest); }
-    CStipendAddress(const std::string& strAddress) { SetString(strAddress); }
-    CStipendAddress(const char* pszAddress) { SetString(pszAddress); }
+    CPushCurrencyAddress() {}
+    CPushCurrencyAddress(const CTxDestination &dest) { Set(dest); }
+    CPushCurrencyAddress(const std::string& strAddress) { SetString(strAddress); }
+    CPushCurrencyAddress(const char* pszAddress) { SetString(pszAddress); }
 
     CTxDestination Get() const;
     bool GetKeyID(CKeyID &keyID) const;
@@ -118,7 +118,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CStipendSecret : public CBase58Data
+class CPushCurrencySecret : public CBase58Data
 {
 public:
     void SetKey(const CKey& vchSecret);
@@ -127,11 +127,11 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CStipendSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CStipendSecret() {}
+    CPushCurrencySecret(const CKey& vchSecret) { SetKey(vchSecret); }
+    CPushCurrencySecret() {}
 };
 
-template<typename K, int Size, CChainParams::Base58Type Type> class CStipendExtKeyBase : public CBase58Data
+template<typename K, int Size, CChainParams::Base58Type Type> class CPushCurrencyExtKeyBase : public CBase58Data
 {
 public:
     void SetKey(const K &key) {
@@ -146,15 +146,15 @@ public:
         return ret;
     }
 
-    CStipendExtKeyBase(const K &key) {
+    CPushCurrencyExtKeyBase(const K &key) {
         SetKey(key);
     }
 
-    CStipendExtKeyBase() {}
+    CPushCurrencyExtKeyBase() {}
 };
 
-typedef CStipendExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CStipendExtKey;
-typedef CStipendExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CStipendExtPubKey;
+typedef CPushCurrencyExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CPushCurrencyExtKey;
+typedef CPushCurrencyExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CPushCurrencyExtPubKey;
 
 /** base58-encoded Bitcoin addresses.
  * Public-key-hash-addresses have version 0 (or 111 testnet).
