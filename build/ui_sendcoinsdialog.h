@@ -517,17 +517,17 @@ public:
         labelCoinControlBytesText->setText(QApplication::translate("SendCoinsDialog", "Bytes:", 0));
         labelCoinControlBytes->setText(QApplication::translate("SendCoinsDialog", "0", 0));
         labelCoinControlAmountText->setText(QApplication::translate("SendCoinsDialog", "Amount:", 0));
-        labelCoinControlAmount->setText(QApplication::translate("SendCoinsDialog", "0.00 SPD", 0));
+        labelCoinControlAmount->setText(QApplication::translate("SendCoinsDialog", "0.00 PUSH", 0));
         labelCoinControlPriorityText->setText(QApplication::translate("SendCoinsDialog", "Priority:", 0));
         labelCoinControlPriority->setText(QApplication::translate("SendCoinsDialog", "medium", 0));
         labelCoinControlFeeText->setText(QApplication::translate("SendCoinsDialog", "Fee:", 0));
-        labelCoinControlFee->setText(QApplication::translate("SendCoinsDialog", "0.00 SPD", 0));
+        labelCoinControlFee->setText(QApplication::translate("SendCoinsDialog", "0.00 PUSH", 0));
         labelCoinControlLowOutputText->setText(QApplication::translate("SendCoinsDialog", "Low Output:", 0));
         labelCoinControlLowOutput->setText(QApplication::translate("SendCoinsDialog", "no", 0));
         labelCoinControlAfterFeeText->setText(QApplication::translate("SendCoinsDialog", "After Fee:", 0));
-        labelCoinControlAfterFee->setText(QApplication::translate("SendCoinsDialog", "0.00 SPD", 0));
+        labelCoinControlAfterFee->setText(QApplication::translate("SendCoinsDialog", "0.00 PUSH", 0));
         labelCoinControlChangeText->setText(QApplication::translate("SendCoinsDialog", "Change", 0));
-        labelCoinControlChange->setText(QApplication::translate("SendCoinsDialog", "0.00 SPD", 0));
+        labelCoinControlChange->setText(QApplication::translate("SendCoinsDialog", "0.00 PUSH", 0));
         checkBoxCoinControlChange->setText(QApplication::translate("SendCoinsDialog", "custom change address", 0));
         labelCoinControlChangeLabel->setText(QString());
 #ifndef QT_NO_TOOLTIP
@@ -541,7 +541,7 @@ public:
         checkUseDarksend->setText(QApplication::translate("SendCoinsDialog", "Darksend", 0));
         checkInstantX->setText(QApplication::translate("SendCoinsDialog", "InstantX", 0));
         label->setText(QApplication::translate("SendCoinsDialog", "Balance:", 0));
-        labelBalance->setText(QApplication::translate("SendCoinsDialog", "123.456 SPD", 0));
+        labelBalance->setText(QApplication::translate("SendCoinsDialog", "123.456 PUSH", 0));
 #ifndef QT_NO_TOOLTIP
         sendButton->setToolTip(QApplication::translate("SendCoinsDialog", "Confirm the send action", 0));
 #endif // QT_NO_TOOLTIP

@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2014-2015 Dash Developers
-// Copyright (c) 2017-2018 The Stipend developers
+// Copyright (c) 2017-2018 The PushCurrency developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,7 +68,7 @@ static void getHardcodedSeeds(std::vector<CAddress> &vSeedsOut)
     const int64_t oneWeek = 7 * 24 * 60 * 60;
     for (size_t i = 0; i < ips.size(); ++i)
     {
-        CAddress addr(CService(ips[i], 46978));
+        CAddress addr(CService(ips[i], 50003));
         addr.nTime = GetTime() - GetRand(oneWeek) - oneWeek;
         vSeedsOut.push_back(addr);
     }
@@ -85,8 +85,8 @@ public:
         pchMessageStart[2] = 0xdb;
         pchMessageStart[3] = 0xdb;
         vAlertPubKey = ParseHex("7501131e64effceb1644efc56ed3594ef64425850aa52617506177cf245575f0aa11e5b1777cfd8621ea39a7996872a07631ea25b3fdda00df37f5e982fe58850a");
-        nDefaultPort = 46978;
-        nRPCPort = 46979;
+        nDefaultPort = 50003;
+        nRPCPort = 50004;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16); // starting difficulty is 1 / 2^12
 
         const char* pszTimestamp = "Update this at the day of deployment";

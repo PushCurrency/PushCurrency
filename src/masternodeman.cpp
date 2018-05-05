@@ -666,9 +666,9 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         }
 
         if(Params().NetworkID() == CChainParams::MAIN){
-            if(addr.GetPort() != 46978) return;
+            if(addr.GetPort() != 50003) return;
             if(!isIPV4) return;
-        } else if(addr.GetPort() == 46978) return;
+        } else if(addr.GetPort() == 50003) return;
 
         //search existing masternode list, this is where we update existing masternodes with new dsee broadcasts
         CMasternode* pmn = this->Find(vin);
@@ -734,13 +734,13 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             }
 
             // verify that sig time is legit in past
-            // should be at least not earlier than block when 5000 TansferCoin tx got MASTERNODE_MIN_CONFIRMATIONS
+            // should be at least not earlier than block when 1000 PUSH tx got MASTERNODE_MIN_CONFIRMATIONS
             uint256 hashBlock = 0;
             GetTransaction(vin.prevout.hash, tx, hashBlock);
             map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hashBlock);
            if (mi != mapBlockIndex.end() && (*mi).second)
             {
-                CBlockIndex* pMNIndex = (*mi).second; // block for 5000 Stipend tx -> 1 confirmation
+                CBlockIndex* pMNIndex = (*mi).second; // block for 1000 PushCurrency tx -> 1 confirmation
                 CBlockIndex* pConfIndex = FindBlockByHeight((pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1)); // block where tx got MASTERNODE_MIN_CONFIRMATIONS
                 if(pConfIndex->GetBlockTime() > sigTime)
                 {

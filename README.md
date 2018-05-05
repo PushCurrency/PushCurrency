@@ -1,7 +1,7 @@
-# The Stipend
+# The PushCurrency
 
-We introduce you a new cryptocoin called Stipend.
-Stipend is a safe, anonymous, fast and highly profitable coin with Masternodes and advanced reward system with Long-Term Development & Support.
+We introduce you a new currency called PushCurrency.
+PushCurrency is a safe, anonymous, fast and highly profitable coin with Masternodes and advanced reward system with Long-Term Development & Support.
 Welcome to the future!
 
 ## Main futures:
@@ -22,32 +22,23 @@ Welcome to the future!
 *	Block Time (PoW/PoS): 1.5 minutes/1.5 minutes
 *	Maturity: 90 blocks
 *	Difficulty Retargeting: every block
-*	Total Supply: ~19,340,594
-*	Masternode Rewards: 25 SPDs of the POS blocks since block 1500, after block 210,000 50% of the PoS block reward
+*	Masternode Rewards: 15 PUSHs of the POS blocks since block 3000
 *	PoS coins maturation: 24 hour
 
 
 #### PoW Rewards:
 
-*	since block 1 : 475,000 (Premine)
-*	since block 2 : 1
-*	since block 101 : 5
-*	since block 201 : 10
-*	since block 301 : 15
-*	since block 401 : 25
-*	since block 1500 : 15
-*	Last PoW Block : 210,000
+*	block 1 : 25000 (Premine)
+*	block 2 : 1
+*   block 3000: 0 
 
 
 ##### PoS Rewards:
 
-*	since block 1500 : 35
-*	since block 210,000 : 20
-*	since block 420,001 : 10
-*	since block 630,001 : 5
-*	since block 840,001 : 3
+*	since block 3000 : 20
+
 
 ###### License
 
-Stipend is released under the terms of the MIT license. See COPYING for more information or see http://opensource.org/licenses/MIT.
+PushCurrency is released under the terms of the MIT license. See COPYING for more information or see http://opensource.org/licenses/MIT.
 
